@@ -8,7 +8,8 @@ public class LZTrie {
     }
 
     public int add(String s) {
-        code += root.add(s, code);
+        root.add(s, code);
+        code += s.length();
         return code;
     }
 

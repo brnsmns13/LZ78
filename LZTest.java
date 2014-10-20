@@ -18,6 +18,7 @@ public class LZTest {
         int c = trie.add("Hello");
         c = trie.add("Hell");
         c = trie.add("Help");
+        c = trie.add("World");
 
         System.out.println(c);
         System.out.println(trie.findNode("Hello").data);
