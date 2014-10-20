@@ -1,6 +1,5 @@
 public class LZEncryption {
     public static String encode(String uncompressed) {
-        Node n = new Node(uncompressed, 0);
 
         // Loop through the uncompressed string and find patterns
         for (int i = 0; i < uncompressed.length(); i++) {
@@ -8,7 +7,7 @@ public class LZEncryption {
             //System.out.println(c);
         }
 
-        return n.data;
+        return "";
     }
 
     public static String decode(String compressed) {

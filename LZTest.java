@@ -16,8 +16,13 @@ public class LZTest {
         LZTrie trie = new LZTrie();
 
         int c = trie.add("Hello");
+        c = trie.add("Hell");
+        c = trie.add("Help");
 
         System.out.println(c);
+        System.out.println(trie.findNode("Hello").data);
+
+        trie.traverse();
 
         // System.out.println("LZEncryption Output");
         // String encoded = LZEncryption.encode(test_str);

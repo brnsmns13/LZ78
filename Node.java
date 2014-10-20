@@ -14,10 +14,19 @@ public class Node {
 
     public int add(String s, int c) {
         char first = s.charAt(0);
-        Node n = new Node(first, c);
+        if (s.length() > 1) {
+            for (Node child : children) {
+                if (child.data == first) {
+                    return child.add(s.substring(1), c++);
+                }
+            }
+        } else if (first == data) {
+            return code;
+        }
+        Node n = new Node(first, c++);
         children.add(n);
         if (s.length() > 1) {
-            c = n.add(s.substring(1), c++);
+            return n.add(s.substring(1), c++);
         }
         return c;
     }
@@ -29,7 +38,7 @@ public class Node {
                 if (s.length() > 1) {
                     return child.findNode(s.substring(1));
                 } else {
-                    return this;
+                    return child;
                 }
             }
         }
@@ -39,5 +48,12 @@ public class Node {
     public boolean contains(String s) {
         Node n = findNode(s);
         return !(n == null);
+    }
+
+    public void traverse() {
+        System.out.println(Character.toString(data) + Integer.toString(code));
+        for (Node child : children) {
+            child.traverse();
+        }
     }
 }

@@ -4,11 +4,12 @@ public class LZTrie {
 
     public LZTrie() {
         code = 0;
-        root = new Node("", code++);
+        root = new Node(' ', code++);
     }
 
     public int add(String s) {
-        return root.add(s);
+        code += root.add(s, code);
+        return code;
     }
 
     public boolean contains(String s) {
@@ -17,5 +18,9 @@ public class LZTrie {
 
     public Node findNode(String s) {
         return root.findNode(s);
+    }
+
+    public void traverse() {
+        root.traverse();
     }
 }
