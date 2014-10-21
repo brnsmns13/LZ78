@@ -1,2 +1,2 @@
-## LZ77 Compression Algorithm
+## LZ78 Compression Algorithm
 ComS 311 programming assignment
