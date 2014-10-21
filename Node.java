@@ -20,8 +20,15 @@ public class Node {
                     return child.add(s.substring(1), c++);
                 }
             }
-        } else if (first == data) {
-            return code;
+        } else if (s.length() == 1) {
+            for (Node child : children) {
+                if (child.data == first) {
+                    return child.code;
+                }
+            }
+            Node n = new Node(first, c++);
+            children.add(n);
+            return c;
         }
         Node n = new Node(first, c++);
         children.add(n);

@@ -8,9 +8,11 @@ public class LZTrie {
     }
 
     public int add(String s) {
-        root.add(s, code);
-        code += s.length();
-        return code;
+        int new_code = root.add(s, code);
+        if (new_code > code) {
+            code = new_code;
+        }
+        return new_code;
     }
 
     public boolean contains(String s) {

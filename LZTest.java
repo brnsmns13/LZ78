@@ -19,9 +19,16 @@ public class LZTest {
         c = trie.add("Hell");
         c = trie.add("Help");
         c = trie.add("World");
+        c = trie.add("Wonder");
+        c = trie.add("Wonder");
+        c = trie.add("Wonder");
+        c = trie.add("Wonder");
+        c = trie.add("Brian");
+        c = trie.add("Bri");
 
         System.out.println(c);
-        System.out.println(trie.findNode("Hello").data);
+        Node n = trie.findNode("Wonde");
+        System.out.println(Integer.toString(n.children.size()) + Integer.toString(n.code));
 
         trie.traverse();
 
