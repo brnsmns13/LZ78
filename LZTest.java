@@ -29,6 +29,10 @@ public class LZTest {
         trie.traverse();
 
         System.out.println(trie.contains("H"));
+        System.out.println("asdf".substring(0,3));
+
+        LZEncryption.encode("aabaaabaaaaaabababbbbaba");
+        LZEncryption.encode("abcabadcbacdabcabcabc");
 
         // System.out.println("LZEncryption Output");
         // String encoded = LZEncryption.encode(test_str);

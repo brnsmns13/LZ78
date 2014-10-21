@@ -40,6 +40,32 @@ public class Node {
         return c;
     }
 
+    public Node addNew(String s, int c, int p) {
+        char first = s.charAt(0);
+        if (s.length() > 1) {
+            for (Node child : children) {
+                if (child.data == first) {
+                    return child.addNew(s.substring(1), c, this.code);
+                }
+            }
+        } else if (s.length() == 1) {
+            for (Node child : children) {
+                if (child.data == first) {
+                    return child;
+                }
+            }
+            Node n = new Node(first, c, this.code);
+            children.add(n);
+            return n;
+        }
+        Node n = new Node(first, c, this.code);
+        children.add(n);
+        if (s.length() > 1) {
+            return n.addNew(s.substring(1), c, this.code);
+        }
+        return n;
+    }
+
     public Node findNode(String s) {
         char first = s.charAt(0);
         for (Node child : children) {

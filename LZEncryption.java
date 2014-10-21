@@ -8,12 +8,11 @@ public class LZEncryption {
         while (end < uncompressed.length()) {
             String sub = uncompressed.substring(start, end);
             if (!trie.contains(sub)) {
-                code = trie.add(sub);
+                Node n = trie.addNew(sub);
+                System.out.println(Integer.toString(n.parent_code) + n.data);
                 start = end;
-                end += sub.length();
-            } else {
-                end++;
             }
+            end++;
         }
         trie.traverse();
         return "";
