@@ -1,12 +1,21 @@
 public class LZEncryption {
     public static String encode(String uncompressed) {
+        int start = 0;
+        int end = 1;
+        int code = 0;
+        LZTrie trie = new LZTrie();
 
-        // Loop through the uncompressed string and find patterns
-        for (int i = 0; i < uncompressed.length(); i++) {
-            char c = uncompressed.charAt(i);
-            //System.out.println(c);
+        while (end < uncompressed.length()) {
+            String sub = uncompressed.substring(start, end);
+            if (!trie.contains(sub)) {
+                code = trie.add(sub);
+                start = end;
+                end += sub.length();
+            } else {
+                end++;
+            }
         }
-
+        trie.traverse();
         return "";
     }
 

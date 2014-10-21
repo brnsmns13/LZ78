@@ -4,20 +4,22 @@ import java.util.ArrayList;
 public class Node {
     char data;
     int code;
+    int parent_code;
     List<Node> children;
 
-    public Node(char d, int c) {
+    public Node(char d, int c, int p) {
         data = d;
         code = c;
+        parent_code = p;
         children = new ArrayList<Node>();
     }
 
-    public int add(String s, int c) {
+    public int add(String s, int c, int p) {
         char first = s.charAt(0);
         if (s.length() > 1) {
             for (Node child : children) {
                 if (child.data == first) {
-                    return child.add(s.substring(1), c++);
+                    return child.add(s.substring(1), c++, this.code);
                 }
             }
         } else if (s.length() == 1) {
@@ -26,14 +28,14 @@ public class Node {
                     return child.code;
                 }
             }
-            Node n = new Node(first, c++);
+            Node n = new Node(first, c++, this.code);
             children.add(n);
             return c;
         }
-        Node n = new Node(first, c++);
+        Node n = new Node(first, c++, this.code);
         children.add(n);
         if (s.length() > 1) {
-            return n.add(s.substring(1), c++);
+            return n.add(s.substring(1), c++, this.code);
         }
         return c;
     }
@@ -58,7 +60,13 @@ public class Node {
     }
 
     public void traverse() {
-        System.out.println(Character.toString(data) + Integer.toString(code));
+        String s = "P: " + Integer.toString(this.parent_code);
+        s += "\tC: ";
+        s += Integer.toString(this.code);
+        s += "\tD: ";
+        s += Character.toString(this.data);
+
+        System.out.println(s);
         for (Node child : children) {
             child.traverse();
         }

@@ -26,11 +26,9 @@ public class LZTest {
         c = trie.add("Brian");
         c = trie.add("Bri");
 
-        System.out.println(c);
-        Node n = trie.findNode("Wonde");
-        System.out.println(Integer.toString(n.children.size()) + Integer.toString(n.code));
-
         trie.traverse();
+
+        System.out.println(trie.contains("H"));
 
         // System.out.println("LZEncryption Output");
         // String encoded = LZEncryption.encode(test_str);

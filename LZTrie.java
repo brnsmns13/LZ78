@@ -4,11 +4,11 @@ public class LZTrie {
 
     public LZTrie() {
         code = 0;
-        root = new Node(' ', code++);
+        root = new Node('\0', code++, -1);
     }
 
     public int add(String s) {
-        int new_code = root.add(s, code);
+        int new_code = root.add(s, code, 0);
         if (new_code > code) {
             code = new_code;
         }
