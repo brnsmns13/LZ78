@@ -4,24 +4,29 @@ public class LZEncryption {
         int end = 1;
         int code = 0;
         LZTrie trie = new LZTrie();
+        String compressed = "";
 
         while (end <= uncompressed.length()) {
             String sub = uncompressed.substring(start, end);
             if (!trie.contains(sub)) {
                 Node n = trie.addNew(sub);
-                System.out.println(Integer.toString(n.parent_code) + n.data);
+                compressed += Integer.toString(n.parent_code) + n.data;
                 start = end;
             } else if (end == uncompressed.length() && trie.contains(sub)) {
                 Node n = trie.findNode(sub);
-                System.out.println(Integer.toString(n.code));
+                compressed += Integer.toString(n.code);
             }
             end++;
         }
-        trie.traverse();
-        return "";
+        return compressed;
     }
 
     public static String decode(String compressed) {
+        LZTrie trie = new LZTrie();
+        String s = Binary.FromBinary(compressed);
+        for (int i = 0; i < s.length(); i += 2) {
+            String sub = "";
+        }
         return "";
     }
 }

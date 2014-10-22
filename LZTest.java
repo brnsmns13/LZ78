@@ -14,31 +14,31 @@ public class LZTest {
         expected += "0101001110100000000000111001000110000";
 
         LZTrie trie = new LZTrie();
-
-        int c = trie.add("Hello");
-        c = trie.add("Hell");
-        c = trie.add("Help");
-        c = trie.add("World");
-        c = trie.add("Wonder");
-        c = trie.add("Wonder");
-        c = trie.add("Wonder");
-        c = trie.add("Wonder");
-        c = trie.add("Brian");
-        c = trie.add("Bri");
-
+        trie.insert(0, 'a');
+        trie.insert(0, 'b');
+        trie.insert(0, 'c');
+        trie.insert(1, 'b');
+        trie.insert(1, 'd');
+        trie.insert(3, 'b');
         trie.traverse();
 
-        System.out.println(trie.contains("H"));
-        System.out.println("asdf".substring(0,3));
 
-        LZEncryption.encode("aabaaabaaaaaabababbbbaba");
-        LZEncryption.encode("abcabadcbacdabcabcabc");
+        String test1 = LZEncryption.encode("aabaaabaaaaaabababbbbaba");
+        String test2 = LZEncryption.encode("abcabadcbacdabcabcabc");
+        System.out.println("Test 1: " + test1);
+        System.out.println("Binary 1: " + Binary.ToBinary(test1));
+        System.out.println("Test 2: " + test2);
 
-        // System.out.println("LZEncryption Output");
-        // String encoded = LZEncryption.encode(test_str);
-        // System.out.println(encoded);
-        //
-        // System.out.println("\nExpected Output");
-        // System.out.println(expected);
+
+
+        System.out.println("\nLZEncryption Output");
+        String encoded = Binary.ToBinary(LZEncryption.encode(test_str));
+        System.out.println(encoded);
+
+        System.out.println("\nExpected Output");
+        System.out.println(expected);
+        System.out.println(Binary.FromBinary(expected.substring(32)));
+
+        System.out.println(encoded == expected);
     }
 }

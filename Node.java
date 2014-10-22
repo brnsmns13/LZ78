@@ -80,6 +80,27 @@ public class Node {
         return null;
     }
 
+    public Node findNode(int c) {
+        if (c == this.code) {
+            return this;
+        }
+        for (Node child : children) {
+            if (child.code == c) {
+                return child;
+            } else {
+                Node n = child.findNode(c);
+                if (n != null) {
+                    return n;
+                }
+            }
+        }
+        return null;
+    }
+
+    public String insert(int code, char data) {
+        return "";
+    }
+
     public boolean contains(String s) {
         Node n = findNode(s);
         return !(n == null);
