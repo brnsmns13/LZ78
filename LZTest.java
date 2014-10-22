@@ -37,7 +37,7 @@ public class LZTest {
 
         System.out.println("\nExpected Output");
         System.out.println(expected);
-        System.out.println(Binary.FromBinary(expected.substring(32)));
+        System.out.println(Binary.FromBinary(expected));
 
         System.out.println(encoded == expected);
     }

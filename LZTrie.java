@@ -31,6 +31,10 @@ public class LZTrie {
         return root.findNode(code);
     }
 
+    public int getIndex() {
+        return count;
+    }
+
     public Node insert(int code, char data) {
         Node p = findNode(code);
         Node n = new Node(data, count++, p.code);
