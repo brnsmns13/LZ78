@@ -18,7 +18,8 @@ public class LZEncryption {
                 start = end;
             } else if (end == uncompressed.length() && trie.contains(sub)) {
                 Node n = trie.findNode(sub);
-                Node final_node = new Node('\0',n.code, n.parent_code);
+                Node final_node = new Node(true, n.code, n.parent_code);
+                System.out.println("ADDNING FINAL");
                 node_list.add(final_node);
                 trie_string += Integer.toString(n.code);
             }
@@ -27,8 +28,8 @@ public class LZEncryption {
 
         int index = trie.getIndex();
         int num_bits = Integer.toBinaryString(index).length();
-        String compressed = "";
         String leading_data = String.format("%32s", Integer.toBinaryString(num_bits)).replace(' ', '0');
+        String compressed = leading_data;
 
         System.out.println("Starting binary conversion: " + trie_string);
         for (Node n : node_list) {
@@ -37,33 +38,32 @@ public class LZEncryption {
             String code_string = String.format("%"+num_bits+"s", Integer.toBinaryString(codeword)).replace(' ', '0');
             String data_string = String.format("%16s", Integer.toBinaryString(data)).replace(' ', '0');
             compressed += code_string;
-            compressed += data_string;
+            if (n.isLast() == false) {
+                compressed += data_string;
+            } else {
+                System.out.println("LAST NODE");
+            }
             System.out.println("Code: " + code_string + "\tData: " + data + " - " + data_string);
         }
-        // for (int i = 0; i < trie_string.length(); i += 2) {
-        //     int code_int = trie_string.charAt(i) - '0';
-        //     int v = -1;
-        //     if ((i + 1) >= trie_string.length()) {
-        //         v = code_int;
-        //     } else {
-        //         v = Character.getNumericValue(trie_string.charAt(i + 1));
-        //     }
-        //
-        //     String code_word = String.format("%" + num_bits + "s", Integer.toBinaryString(code_int)).replace(' ', '0');
-        //     String data = String.format("%16s", Integer.toBinaryString(v)).replace(' ', '0');
-        //     compressed += code_word;
-        //     compressed += data;
-        //     System.out.println("Code: " + Integer.toString(code_int) + code_word + "\tData: " + data);
-        // }
-        System.out.println("End binary conversion");
+        int pad = 16 - (compressed.length() % 16);
+        String pad_string = String.format("%"+pad+"s", "0").replace(' ', '0');
+        compressed += pad_string;
+
+        System.out.println("End binary conversion: " + pad_string);
         return compressed;
     }
 
     public static String decode(String compressed) {
         LZTrie trie = new LZTrie();
-        String s = Binary.FromBinary(compressed);
-        for (int i = 0; i < s.length(); i += 2) {
-            String sub = "";
+        int code_length = Integer.parseInt(compressed.substring(0,32), 2);
+        int info_size = code_length + 16;
+        compressed = compressed.substring(32);
+        System.out.println(code_length);
+        for (int i = 0; i+info_size < compressed.length(); i += info_size) {
+            String sub = compressed.substring(i, (i + info_size));
+            int codeword = Integer.parseInt(sub.substring(0, code_length), 2);
+            char data = (char)Integer.parseInt(sub.substring(code_length, info_size), 2);
+            System.out.println("Code: " + Integer.toString(codeword) + "\tData: " + data);
         }
         return "";
     }

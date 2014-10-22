@@ -2,16 +2,28 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Node {
+    boolean last;
     char data;
     int code;
     int parent_code;
     List<Node> children;
 
     public Node(char d, int c, int p) {
+        last = false;
         data = d;
         code = c;
         parent_code = p;
         children = new ArrayList<Node>();
+    }
+
+    public Node(boolean l, int c, int p) {
+        code = c;
+        parent_code = p;
+        last = true;
+    }
+
+    public boolean isLast(){
+        return this.last;
     }
 
     public int add(String s, int c, int p) {
@@ -97,8 +109,12 @@ public class Node {
         return null;
     }
 
-    public String insert(int code, char data) {
-        return "";
+    public Node insert(char d, int c, int p) {
+        if (parent == this.code) {
+            Node n = new Node(d, c, p);
+            this.children.add(n);
+            return Node
+        }
     }
 
     public boolean contains(String s) {
