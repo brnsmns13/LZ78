@@ -37,7 +37,6 @@ public class LZTrie {
 
     public String insert(char data, int p) {
         String s = root.insert(data, count++, p);
-        System.out.println(s);
         return s;
     }
 
