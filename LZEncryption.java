@@ -55,6 +55,7 @@ public class LZEncryption {
 
     public static String decode(String compressed) {
         LZTrie trie = new LZTrie();
+        String final_string = "";
         int insert_count = 1;
         int code_length = Integer.parseInt(compressed.substring(0,32), 2);
         int info_size = code_length + 16;
@@ -65,9 +66,9 @@ public class LZEncryption {
             String sub = compressed.substring(i, (i + info_size));
             int codeword = Integer.parseInt(sub.substring(0, code_length), 2);
             char data = (char)Integer.parseInt(sub.substring(code_length, info_size), 2);
-            trie.insert(data, codeword);
+            final_string += trie.insert(data, codeword);
             System.out.println("Code: " + Integer.toString(codeword) + "\tData: " + data);
         }
-        return "";
+        return final_string;
     }
 }

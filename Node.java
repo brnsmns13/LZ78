@@ -109,16 +109,22 @@ public class Node {
         return null;
     }
 
-    public Node insert(char d, int c, int p) {
+    public String insert(char d, int c, int p) {
         if (p == this.code) {
             Node n = new Node(d, c, p);
             this.children.add(n);
-            return n;
+            String s = "";
+            s += this.data;
+            s += n.data;
+            return s;
         } else {
             for(Node child : children) {
-                Node n = child.insert(d, c, p);
-                if (n != null) {
-                    return n;
+                String s = child.insert(d, c, p);
+                if (s != null) {
+                    String x = "";
+                    x += this.data;
+                    x += s;
+                    return x;
                 }
             }
         }

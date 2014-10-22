@@ -35,10 +35,10 @@ public class LZTrie {
         return count;
     }
 
-    public Node insert(char data, int p) {
-        Node n = root.insert(data, count++, p);
-        root.traverse();
-        return n;
+    public String insert(char data, int p) {
+        String s = root.insert(data, count++, p);
+        System.out.println(s);
+        return s;
     }
 
     public void traverse() {

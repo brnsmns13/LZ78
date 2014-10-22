@@ -13,5 +13,9 @@ public class LZTest {
         System.out.println(encode_test_1.equals(sugarworldbin));
 
         String decode_test_1 = LZEncryption.decode(sugarworldbin);
+        System.out.println(decode_test_1);
+
+        String decode_test_2 = LZEncryption.decode(wizardbin);
+        System.out.println(decode_test_2);
     }
 }
