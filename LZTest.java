@@ -26,18 +26,16 @@ public class LZTest {
         String test1 = LZEncryption.encode("aabaaabaaaaaabababbbbaba");
         String test2 = LZEncryption.encode("abcabadcbacdabcabcabc");
         System.out.println("Test 1: " + test1);
-        System.out.println("Binary 1: " + Binary.ToBinary(test1));
         System.out.println("Test 2: " + test2);
 
 
 
         System.out.println("\nLZEncryption Output");
-        String encoded = Binary.ToBinary(LZEncryption.encode(test_str));
+        String encoded = LZEncryption.encode(test_str);
         System.out.println(encoded);
 
         System.out.println("\nExpected Output");
         System.out.println(expected);
-        System.out.println(Binary.FromBinary(expected));
 
         System.out.println(encoded == expected);
     }
