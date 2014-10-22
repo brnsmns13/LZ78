@@ -110,11 +110,19 @@ public class Node {
     }
 
     public Node insert(char d, int c, int p) {
-        if (parent == this.code) {
+        if (p == this.code) {
             Node n = new Node(d, c, p);
             this.children.add(n);
-            return Node
+            return n;
+        } else {
+            for(Node child : children) {
+                Node n = child.insert(d, c, p);
+                if (n != null) {
+                    return n;
+                }
+            }
         }
+        return null;
     }
 
     public boolean contains(String s) {

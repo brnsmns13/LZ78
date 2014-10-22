@@ -55,14 +55,17 @@ public class LZEncryption {
 
     public static String decode(String compressed) {
         LZTrie trie = new LZTrie();
+        int insert_count = 1;
         int code_length = Integer.parseInt(compressed.substring(0,32), 2);
         int info_size = code_length + 16;
         compressed = compressed.substring(32);
         System.out.println(code_length);
-        for (int i = 0; i+info_size < compressed.length(); i += info_size) {
+        int i = 0;
+        for (i = 0; i+info_size < compressed.length(); i += info_size) {
             String sub = compressed.substring(i, (i + info_size));
             int codeword = Integer.parseInt(sub.substring(0, code_length), 2);
             char data = (char)Integer.parseInt(sub.substring(code_length, info_size), 2);
+            trie.insert(data, codeword);
             System.out.println("Code: " + Integer.toString(codeword) + "\tData: " + data);
         }
         return "";

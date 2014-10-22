@@ -35,10 +35,9 @@ public class LZTrie {
         return count;
     }
 
-    public Node insert(int code, char data) {
-        Node p = findNode(code);
-        Node n = new Node(data, count++, p.code);
-        p.children.add(n);
+    public Node insert(char data, int p) {
+        Node n = root.insert(data, count++, p);
+        root.traverse();
         return n;
     }
 
